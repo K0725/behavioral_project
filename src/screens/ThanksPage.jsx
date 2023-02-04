@@ -9,13 +9,10 @@ const ThanksPage = () => {
     <div className="container">
       <div className="headerText">Thanks for Participation</div>
       <div className="text-container">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ex
-          cum, dolor veniam provident porro tempore quae quasi sequi qui saepe
-          voluptatum aliquid illum iste in nisi non dolore at eum numquam
-          laboriosam exercitationem laudantium ab? Aliquam quia, magni possimus
-          veniam itaque minus aperiam. Unde dolore tempora adipisci dolorum nam!
-        </p>
+        <h3>
+        Thank you for participating
+        Please **DO NOT** close this page and do let a staff member know you have finished to start your debriefing
+        </h3>
       </div>
       <div className="start-button" onClick={() => exportExcelFile(data)}>
         Download
