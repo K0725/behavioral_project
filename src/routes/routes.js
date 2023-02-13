@@ -9,7 +9,7 @@ export default function MainRoutes() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
-      <Route path="/nextPage" element={<nextButtonPage />} />
+      <Route path="/nextPage" element={<NextPage />} />
       <Route path="/3x3grid" element={<ThreegridPage />} />
       <Route path="/6x6grid" element={<Sixgridpage />} />
       <Route path="/thanks" element={<ThanksPage />} />
