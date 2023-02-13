@@ -103,7 +103,7 @@ const SixgridPage = () => {
   }
   return (
     <div className="container">
-      <div className="headerText">Practice Trial 6x6 Grid</div>
+      <div className="headerText">6x6 Grid</div>
       <div className="image-grid-six">
         {imagesState.map((image, key) => {
           return (

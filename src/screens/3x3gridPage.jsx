@@ -74,7 +74,7 @@ const ThreegridPage = () => {
             setImages(newArray);
           });
         });
-        navigate(`/6x6grid`);
+        navigate(`/NextPage`);
       } else {
         let newArray = [];
         subscibe(imagesState).then((data) => {
