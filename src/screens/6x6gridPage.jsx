@@ -19,8 +19,8 @@ const SixgridPage = () => {
     let arr = [];
     const subscribe = async () => {
       let images = [];
-      let indexForTarget = Math.floor(Math.random() * 17);
-      let targetPhoto = target_images[indexForTarget];
+      let indexFromTarget = Math.floor(Math.random() * 17);
+      let targetPhoto = target_images[indexFromTarget];
       for (let k = 0; k < 36; k++) {
         // let index = Math.floor(Math.random() * 56);
         // images.push(non_target_images[index]);

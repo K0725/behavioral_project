@@ -19,14 +19,14 @@ const ThreegridPage = () => {
     let arr = [];
     const subscribe = async () => {
       let images = [];
-      let indexForTarget = Math.floor(Math.random() * 17);
-      let targetPhoto = target_images[indexForTarget];
+      let indexFromTarget = Math.floor(Math.random() * 17); // selecting the one image of the photo from the image
+      let targetPhoto = target_images[indexFromTarget];
       for (let k = 0; k < 9; k++) {
-        // let index = Math.floor(Math.random() * 56);
-        // images.push(non_target_images[index]);
+      // let index = Math.floor(Math.random() * 9);
+      // images.push(non_target_images[index]);
         images.push(non_target_images[k]);
       }
-      let targetIndex = Math.floor(Math.random() * 9);
+      let targetIndex = Math.floor(Math.random() * 9);  //location in the 3x3 grid 
       setTargetIndex(targetIndex);
       images[targetIndex] = targetPhoto;
       return images;
