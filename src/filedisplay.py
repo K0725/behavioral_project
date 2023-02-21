@@ -1,19 +1,41 @@
 import os
 
-#holder path
-non_target_folder = "C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\non-target"
 
-image_code_list = []
+root_path = "C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets"
 
-#itelate through the every image in the file
-for index, filename in enumerate(os.listdir(non_target_folder)):
-    if filename.endswith(".jpg") or filename.endswith(".png") or filename.endswith(".gif"):
-        #print(filename)
-        image_path = os.path.normpath(os.path.join(non_target_folder, filename)).replace("\\", "\\\\") 
-        image_code = f'index: {index},\n  category: "target",\n  image: require("{image_path}")'
-        image_code_list.append(f"{{ {image_code} }}")
+def process_image_folder(folder_path, target_images, non_target_images):
+    
+    for filename in os.listdir(folder_path):
+        if filename.startswith('C'):
+            image_path = f'require("{os.path.join(folder_path, filename)}")'
+            non_target_images.append({
+                'index': len(non_target_images),
+                'category': 'non-target',
+                'image': image_path
+            })
 
-final_js_code = "const images = [\n  " + ",\n  ".join(image_code_list) + "\n];"
+        elif filename.startswith('T'):
+            image_path = f'require("{os.path.join(folder_path, filename)}")'
+            target_images.append({
+                'index': len(target_images),
+                'category': 'target',
+                'image': image_path
+            })
 
-with open("images.js", "w") as f:
-    f.write(final_js_code)
+target_images = []
+non_target_images = []
+for folder_name in os.listdir(root_path):
+    if os.path.isdir(os.path.join(root_path, folder_name)):
+        folder_path = os.path.join(root_path, folder_name)
+        process_image_folder(folder_path, target_images, non_target_images)
+
+with open('images.js', 'w') as f:
+    f.write('export const target_images = [\n')
+    for image in target_images:
+        f.write(f'  {str(image)},\n')
+    f.write(']\n\n')
+
+    f.write('export const non_target_images = [\n')
+    for image in non_target_images:
+        f.write(f'  {str(image)},\n')
+    f.write(']\n')
