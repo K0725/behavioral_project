@@ -10,8 +10,8 @@ const ThanksPage = () => {
       <div className="headerText">Thanks for Participation</div>
       <div className="text-container">
         <h3>
-        Thank you for participating
-        Please **DO NOT** close this page and do let a staff member know you have finished to start your debriefing
+        Thank you for participating.
+        Please DO NOT close this page and let a staff member know you have finished starting your debriefing. 
         </h3>
       </div>
       <div className="start-button" onClick={() => exportExcelFile(data)}>

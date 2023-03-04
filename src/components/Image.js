@@ -1,54 +1,37 @@
 export const target_images = [
-  {'index': 0, 'category': 'target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\1\\T1_01.jpg")'},
-  {'index': 1, 'category': 'target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\2\\T2_01.jpg")'},
-  {'index': 2, 'category': 'target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\3\\T3_01.jpg")'},
+  {index: 0, category: 'target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\1\\T1_01.jpg")},
+  {'index': 1, 'category': 'target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\2\\T2_01.jpg")},
+  {'index': 2, 'category': 'target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\3\\T3_01.jpg")},
 ]
+
+
 
 export const non_target_images = [
-  {'index': 0, 
-  'category': 'non-target', 
-  'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\1\\C1_01.jpg")'
-  },
-  {'index': 1, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\1\\C1_02.jpg")'},
-  {'index': 2, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\1\\C1_03.jpg")'},
-  {'index': 3, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\1\\C1_04.jpg")'},
-  {'index': 4, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\1\\C1_05.jpg")'},
-  {'index': 5, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\1\\C1_06.jpg")'},
-  {'index': 6, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\1\\C1_07.jpg")'},
-  {'index': 7, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\1\\C1_08.jpg")'},
-  {'index': 8, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\2\\C2_01.jpg")'},
-  {'index': 9, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\2\\C2_02.jpg")'},
-  {'index': 10, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\2\\C2_03.jpg")'},
-  {'index': 11, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\2\\C2_04.jpg")'},
-  {'index': 12, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\2\\C2_05.jpg")'},
-  {'index': 13, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\2\\C2_06.jpg")'},
-  {'index': 14, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\2\\C2_07.jpg")'},
-  {'index': 15, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\2\\C2_08.jpg")'},
-  {'index': 16, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\3\\C3_01.jpg")'},
-  {'index': 17, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\3\\C3_02.jpg")'},
-  {'index': 18, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\3\\C3_03.jpg")'},
-  {'index': 19, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\3\\C3_04.jpg")'},
-  {'index': 20, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\3\\C3_05.jpg")'},
-  {'index': 21, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\3\\C3_06.jpg")'},
-  {'index': 22, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\3\\C3_07.jpg")'},
-  {'index': 23, 'category': 'non-target', 'image': 'require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\3\\C3_08.jpg")'},
+  {index: 0, category: 'non-target', image: require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\1\\C1_01.jpg")},
+  {'index': 1, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\1\\C1_02.jpg")},
+  {'index': 2, 'category': 'non-target', image: require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\1\\C1_03.jpg")},
+  {'index': 3, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\1\\C1_04.jpg")},
+  {'index': 4, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\1\\C1_05.jpg")},
+  {'index': 5, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\1\\C1_06.jpg")},
+  {'index': 6, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\1\\C1_07.jpg")},
+  {'index': 7, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\1\\C1_08.jpg")},
+  {'index': 8, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\2\\C2_01.jpg")},
+  {'index': 9, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\2\\C2_02.jpg")},
+  {'index': 10, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\2\\C2_03.jpg")},
+  {'index': 11, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\2\\C2_04.jpg")},
+  {'index': 12, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\2\\C2_05.jpg")},
+  {'index': 13, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\2\\C2_06.jpg")},
+  {'index': 14, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\2\\C2_07.jpg")},
+  {'index': 15, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\2\\C2_08.jpg")},
+  {'index': 16, 'category': 'non-target', 'image':  require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\3\\C3_01.jpg")},
+  {'index': 17, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\3\\C3_02.jpg")},
+  {'index': 18, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\3\\C3_03.jpg")},
+  {'index': 19, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\3\\C3_04.jpg")} ,
+  {'index': 20, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\3\\C3_05.jpg")},
+  {'index': 21, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\3\\C3_06.jpg")},
+  {'index': 22, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\3\\C3_07.jpg")},
+  {'index': 23, 'category': 'non-target', 'image': require("C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets\\3\\C3_08.jpg")},
 ]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
