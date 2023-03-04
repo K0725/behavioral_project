@@ -16,47 +16,21 @@ const ThreegridPage = () => {
   let start = new Date().getTime();
 
   useEffect(() => {
-    let arr = []; 
+    let arr = [];
     const subscribe = async () => {
-    let images = [];
-    let nonTargetCount = 0;
-    let targetCount = 0;
-    let targetPhoto;
-
-    //iteration
-      for (let i = 0; i < non_target_images.length; i++) {
-        if (nonTargetCount <= 8) {
-          images.push(non_target_images[i]);
-          nonTargetCount++;
-        } 
-        else if (targetCount <= 1) {
-          images.push(target_images[i]);
-          setTargetIndex(i);
-          images[i] = targetPhoto
-          targetCount++;
-        } else {
-          break;
-        }
-      
+      let images = [];
+      let indexForTarget = Math.floor(Math.random() * 17);
+      let targetPhoto = target_images[indexForTarget];
+      for (let k = 0; k < 9; k++) {
+        // let index = Math.floor(Math.random() * 56);
+        // images.push(non_target_images[index]);
+        images.push(non_target_images[k]);
       }
-      // let images = [];
-      // let indexFromTarget = Math.floor(Math.random() * 17); // selecting the one image of the photo from the image
-      // let targetPhoto = target_images[indexFromTarget];
-      
-
-      
-      // for (let k = 0; k < 9; k++) {
-      //   let index = Math.floor(Math.random() * 9);
-      //   images.push(non_target_images[index]);
-      //   images.push(non_target_images[k]);
-      // }
-      // let targetIndex = Math.floor(Math.random() * 9);  //location in the 3x3 grid 
-      // setTargetIndex(targetIndex);
-      // // targetindex = 
-      // images[targetIndex] = targetPhoto;
+      let targetIndex = Math.floor(Math.random() * 9);
+      setTargetIndex(targetIndex);
+      images[targetIndex] = targetPhoto;
       return images;
     };
-
 
     subscribe().then((images) => {
       arr.push(...images);
@@ -100,7 +74,7 @@ const ThreegridPage = () => {
             setImages(newArray);
           });
         });
-        navigate(`/NextPage`);
+        navigate(`/6x6grid`);
       } else {
         let newArray = [];
         subscibe(imagesState).then((data) => {
