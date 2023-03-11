@@ -10,51 +10,49 @@ const ThreegridPage = () => {
   const navigate = useNavigate();
   const [imagesState, setImages] = useState([]);
   const [trialNumber, setTrialNumber] = useState(1);
-  const [tragetIndex, setTargetIndex] = useState();
+  const [targetIndex, setTargetIndex] = useState();
   const [selectedImagesArray, setSelectedImagesArray] = useState([]);
   const [attempts, setAttempts] = useState(1);
   let start = new Date().getTime();
-
+  
   useEffect(() => {
-    let arr = [];
     const subscribe = async () => {
       let images = [];
-      let indexForTarget = Math.floor(Math.random() * 17);
-      let targetPhoto = target_images[indexForTarget];
-      for (let k = 0; k < 9; k++) {
-        // let index = Math.floor(Math.random() * 56);
-        // images.push(non_target_images[index]);
-        images.push(non_target_images[k]);
+      let targetIndex = Math.floor(Math.random() * 9); // randomly select the index of the target image
+      for (let i = 0; i < 9; i++) {
+        let image;
+        if (i === targetIndex) { // set the target image at the randomly selected index
+          image = target_images[Math.floor(Math.random() * target_images.length)];
+        } else {
+          image = non_target_images[Math.floor(Math.random() * non_target_images.length)];
+        }
+        images.push(image);
       }
-      let targetIndex = Math.floor(Math.random() * 9);
-      setTargetIndex(targetIndex);
-      images[targetIndex] = targetPhoto;
       return images;
     };
-
+    
+    
     subscribe().then((images) => {
-      arr.push(...images);
-      setImages(arr);
+      shuffleArray(images).then((shuffledImages) => {
+        setImages(shuffledImages); // final array
+      });
     });
   }, []);
-
+  
   function handleClickImage(image) {
     if (image?.category === "non-target") {
       setAttempts(attempts + 1);
-      setSelectedImagesArray((selectedImagesArray) => [
-        ...selectedImagesArray,
-        image?.index,
-      ]);
+      setSelectedImagesArray((selectedImagesArray) => [      ...selectedImagesArray,      image?.index,    ]);
     } else if (image?.category === "target") {
       setSelectedImagesArray([]);
       const end = new Date().getTime();
       const TimeTaken = end - start;
       start = 0;
-      const subscibe = async (array) => {
+      const subscribe = async (array) => {
         console.log("Array before", array);
-        let newArray = array;
+        let newArray = array.slice(); // make a copy of the array
         let indexForTarget = Math.floor(Math.random() * 10);
-        newArray[tragetIndex] = target_images[indexForTarget];
+        newArray[targetIndex] = target_images[indexForTarget];
         return newArray;
       };
       setAttempts(attempts + 1);
@@ -66,26 +64,22 @@ const ThreegridPage = () => {
         })
       );
       if (trialNumber === 3) {
-        let newArray = [];
-        subscibe(imagesState).then((data) => {
-          shuffleArray(data).then((data) => {
-            console.log("Array after", data);
-            newArray.push(...data);
-            setImages(newArray);
+        subscribe(imagesState).then((newArray) => {
+          shuffleArray(newArray).then((shuffledArray) => {
+            console.log("Array after", shuffledArray);
+            setImages(shuffledArray);
           });
         });
         navigate(`/6x6grid`);
       } else {
-        let newArray = [];
-        subscibe(imagesState).then((data) => {
-          shuffleArray(data).then((data) => {
-            data.map((d, k) => {
+        subscribe(imagesState).then((newArray) => {
+          shuffleArray(newArray).then((shuffledArray) => {
+            shuffledArray.map((d, k) => {
               if (d?.category === "target") {
                 setTargetIndex(k);
               }
             });
-            newArray.push(...data);
-            setImages(newArray);
+            setImages(shuffledArray);
           });
         });
         setAttempts(1);
@@ -93,16 +87,18 @@ const ThreegridPage = () => {
       }
     }
   }
-
+  
   async function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
+    let shuffledArray = array.slice(); // make a copy of the array
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * i);
-      const temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
+      const temp = shuffledArray[i];
+      shuffledArray[i] = shuffledArray[j];
+      shuffledArray[j] = temp;
     }
-    return array;
+    return shuffledArray;
   }
+  
   return (
     <div className="container">
       <div className="headerText">Practice Trial 3x3 Grid</div>
