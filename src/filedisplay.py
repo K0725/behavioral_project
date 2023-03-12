@@ -1,41 +1,40 @@
 import os
 
-
-root_path = "C:\\Users\\kiddi\\OneDrive\\Documents\\Code\\behavirol_project\\src\\assets"
+root_path = "C:/Users/kiddi/OneDrive/Documents/Code/behavirol_project/public/assets"
 
 def process_image_folder(folder_path, target_images, non_target_images):
-    
-    for filename in os.listdir(folder_path):
+    for i, filename in enumerate(os.listdir(folder_path)):
         if filename.startswith('C'):
-            image_path = f'require("{os.path.join(folder_path, filename)}")'
+            image_path = f'../assets/{folder_path.split("/")[-1]}/{filename}'
             non_target_images.append({
-                'index': len(non_target_images),
+                'index': i,
                 'category': 'non-target',
-                'image': image_path
+                'image': image_path,
             })
-
         elif filename.startswith('T'):
-            image_path = f'require("{os.path.join(folder_path, filename)}")'
+            image_path = f'../assets/{folder_path.split("/")[-1]}/{filename}'
             target_images.append({
-                'index': len(target_images),
+                'index': i,
                 'category': 'target',
-                'image': image_path
+                'image': image_path,
             })
 
 target_images = []
 non_target_images = []
-for folder_name in os.listdir(root_path):
+for folder_name in sorted(os.listdir(root_path), key=lambda x: int(x)):
     if os.path.isdir(os.path.join(root_path, folder_name)):
         folder_path = os.path.join(root_path, folder_name)
         process_image_folder(folder_path, target_images, non_target_images)
 
 with open('images.js', 'w') as f:
-    f.write('export const target_images = [\n')
-    for image in target_images:
-        f.write(f'  {str(image)},\n')
-    f.write(']\n\n')
-
-    f.write('export const non_target_images = [\n')
-    for image in non_target_images:
-        f.write(f'  {str(image)},\n')
-    f.write(']\n')
+    f.write('[')
+    for i, image_dict in enumerate(non_target_images):
+        if i > 0:
+            f.write(',\n')
+        f.write('{')
+        for key, value in image_dict.items():
+            if key == 'index':
+                value = str(i)
+            f.write(f'{key}: "{value}", ')
+        f.write('}')
+    f.write(']')
