@@ -34,6 +34,7 @@ const ThreegridPage = () => {
     
     subscribe().then((images) => {
       shuffleArray(images).then((shuffledImages) => {
+        console.log('shuffled images',shuffleArray)
         setImages(shuffledImages); // final array
       });
     });
