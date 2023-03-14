@@ -13,26 +13,28 @@ const SixgridPage = () => {
 	const [imagesState, setImages] = useState([]);
 	const [trialNumber, setTrialNumber] = useState(4);
 	const [targetIndex, setTargetIndex] = useState(3);
-	const [nonTargetStart, setNonTargetStart] = useState(23)
+	const [nonTargetStart, setNonTargetStart] = useState(23);
+
 	const [selectedImagesArray, setSelectedImagesArray] = useState([]);
 	const [attempts, setAttempts] = useState(1);
 	let start = new Date().getTime();
-	
-	
+
 	useEffect(() => {
 		let arr = [];
 		const subscribe = async () => {
 			let images = [];
 			// let indexFromTarget = Math.floor(Math.random() * 17);
 			let targetPhoto = target_images[targetIndex];
-			for (let k = 24; k < 58; k++) {
+			for (let k = nonTargetStart; k < 58; k++) {
 				// let index = Math.floor(Math.random() * 56);
 				// images.push(non_target_images[index]);
 				images.push(non_target_images[k]);
 			}
-			
-			setTargetIndex(3);
-			images[targetIndex] = targetPhoto;
+			// let targetIndex = Math.floor(Math.random() * 35);
+			// setTargetIndex(3);
+			// images[targetIndex] = targetPhoto;
+			images.push(targetPhoto);
+
 			return images;
 		};
 
@@ -44,7 +46,7 @@ const SixgridPage = () => {
 		});
 	}, []);
 
-	function handleClickImage(image) {
+	async function handleClickImage(image) {
 		if (image?.category === 'non-target') {
 			setAttempts(attempts + 1);
 			setSelectedImagesArray((selectedImagesArray) => [
@@ -52,23 +54,34 @@ const SixgridPage = () => {
 				image?.index,
 			]);
 		} else if (image?.category === 'target') {
+			let startIndex = nonTargetStart + 35; //58
+			let endIndex = startIndex + 35; //93
+			setNonTargetStart(startIndex);
 
-			let startIndex = nonTargetStart + 35;
-			let endIndex = startIndex + 35; 
 			setSelectedImagesArray([]);
-
-
-
 
 			const end = new Date().getTime();
 			const TimeTaken = end - start;
 			start = 0;
-			const subscibe = async (array) => {
-				let newArray = array;
-				let indexForTarget = Math.floor(Math.random() * 10);
-				newArray[targetIndex] = target_images[indexForTarget];
-				return newArray;
-			};
+
+			// get next round images
+			let nextRoundImages = getNextRoundImages(
+				startIndex,
+				endIndex,
+				non_target_images
+			);
+			nextRoundImages.push(target_images[targetIndex + 1]);
+			setTargetIndex(targetIndex + 1);
+			const shuffeledImages = await shuffleArray(nextRoundImages);
+			setImages(shuffeledImages);
+
+			// const subscibe = async (array) => {
+			// 	let newArray = array;
+			// 	let indexForTarget = Math.floor(Math.random() * 10);
+			// 	newArray[targetIndex] = target_images[indexForTarget];
+			// 	return newArray;
+			// };
+
 			setAttempts(attempts + 1);
 			dispatch(
 				addData({
@@ -78,28 +91,29 @@ const SixgridPage = () => {
 				})
 			);
 			if (trialNumber === 10) {
-				let newArray = [];
-				subscibe(imagesState).then((data) => {
-					shuffleArray(data).then((data) => {
-						newArray.push(...data);
-						setImages(newArray);
-					});
-				});
+				// let newArray = [];
+				// subscibe(imagesState).then((data) => {
+				// 	shuffleArray(data).then((data) => {
+				// 		newArray.push(...data);
+				// 		setImages(newArray);
+				// 	});
+				// });
+
 				navigate(`/thanks`);
 			} else {
-				let newArray = [];
-				subscibe(imagesState).then((data) => {
-					shuffleArray(data).then((data) => {
-						data.map((d, k) => {
-							if (d?.category === 'target') {
-								setTargetIndex(k);
-							}
-						});
-						newArray.push(...data);
-						setImages(newArray);
-					});
-				});
-				setAttempts(1);
+				// let newArray = [];
+				// subscibe(imagesState).then((data) => {
+				// 	shuffleArray(data).then((data) => {
+				// 		data.map((d, k) => {
+				// 			if (d?.category === 'target') {
+				// 				setTargetIndex(k);
+				// 			}
+				// 		});
+				// 		newArray.push(...data);
+				// 		setImages(newArray);
+				// 	});
+				// });
+				// setAttempts(1);
 				setTrialNumber(trialNumber + 1);
 			}
 		}

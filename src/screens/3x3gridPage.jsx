@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addData } from '../slices/ExcelSlice';
 
-
 const ThreegridPage = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -48,10 +47,9 @@ const ThreegridPage = () => {
 				image?.index,
 			]);
 		} else if (image?.category === 'target') {
-			let startIndex = targetIndex + 8;
+			let startIndex = targetIndex + 8; // 0+8 = 9, 17
 			let endIndex = startIndex + 8;
 
-			setTargetIndex(targetIndex + 1);
 			setSelectedImagesArray([]);
 
 			const end = new Date().getTime();
@@ -65,8 +63,8 @@ const ThreegridPage = () => {
 				endIndex,
 				non_target_images
 			);
-
 			nextRoundImages.push(target_images[targetIndex + 1]);
+			setTargetIndex(targetIndex + 1);
 			const shuffeledImages = await shuffleArray(nextRoundImages);
 			setImages(shuffeledImages);
 			// const subscribe = async (array) => {
