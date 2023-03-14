@@ -65,6 +65,7 @@ const ThreegridPage = () => {
 				endIndex,
 				non_target_images
 			);
+
 			nextRoundImages.push(target_images[targetIndex + 1]);
 			const shuffeledImages = await shuffleArray(nextRoundImages);
 			setImages(shuffeledImages);

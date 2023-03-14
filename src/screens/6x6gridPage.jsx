@@ -12,32 +12,35 @@ const SixgridPage = () => {
 	const navigate = useNavigate();
 	const [imagesState, setImages] = useState([]);
 	const [trialNumber, setTrialNumber] = useState(4);
-	const [tragetIndex, setTargetIndex] = useState(3);
-
+	const [targetIndex, setTargetIndex] = useState(3);
+	const [nonTargetStart, setNonTargetStart] = useState(23)
 	const [selectedImagesArray, setSelectedImagesArray] = useState([]);
 	const [attempts, setAttempts] = useState(1);
 	let start = new Date().getTime();
-
+	
+	
 	useEffect(() => {
 		let arr = [];
 		const subscribe = async () => {
 			let images = [];
-			let indexFromTarget = Math.floor(Math.random() * 17);
-			let targetPhoto = target_images[indexFromTarget];
-			for (let k = 23; k < 36; k++) {
+			// let indexFromTarget = Math.floor(Math.random() * 17);
+			let targetPhoto = target_images[targetIndex];
+			for (let k = 24; k < 58; k++) {
 				// let index = Math.floor(Math.random() * 56);
 				// images.push(non_target_images[index]);
 				images.push(non_target_images[k]);
 			}
-			let targetIndex = Math.floor(Math.random() * 35);
-			setTargetIndex(targetIndex);
+			
+			setTargetIndex(3);
 			images[targetIndex] = targetPhoto;
 			return images;
 		};
 
 		subscribe().then((images) => {
-			arr.push(...images);
-			setImages(arr);
+			shuffleArray(images).then((shuffledImages) => {
+				console.log('shuffled images', shuffledImages);
+				setImages(shuffledImages); // final array
+			});
 		});
 	}, []);
 
@@ -49,14 +52,21 @@ const SixgridPage = () => {
 				image?.index,
 			]);
 		} else if (image?.category === 'target') {
+
+			let startIndex = nonTargetStart + 35;
+			let endIndex = startIndex + 35; 
 			setSelectedImagesArray([]);
+
+
+
+
 			const end = new Date().getTime();
 			const TimeTaken = end - start;
 			start = 0;
 			const subscibe = async (array) => {
 				let newArray = array;
 				let indexForTarget = Math.floor(Math.random() * 10);
-				newArray[tragetIndex] = target_images[indexForTarget];
+				newArray[targetIndex] = target_images[indexForTarget];
 				return newArray;
 			};
 			setAttempts(attempts + 1);
