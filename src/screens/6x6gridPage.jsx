@@ -13,7 +13,7 @@ const SixgridPage = () => {
 	const [imagesState, setImages] = useState([]);
 	const [trialNumber, setTrialNumber] = useState(4);
 	const [targetIndex, setTargetIndex] = useState(3);
-	const [nonTargetStart, setNonTargetStart] = useState(24);
+	const [nonTargetStart, setNonTargetStart] = useState(23);
 
 	const [selectedImagesArray, setSelectedImagesArray] = useState([]);
 	const [attempts, setAttempts] = useState(1);
@@ -25,7 +25,7 @@ const SixgridPage = () => {
 			let images = [];
 			// let indexFromTarget = Math.floor(Math.random() * 17);
 			let targetPhoto = target_images[targetIndex];
-			for (let k = nonTargetStart; k < 58, k++;) {
+			for (let k = nonTargetStart; k < 58; k++) {
 				// let index = Math.floor(Math.random() * 56);
 				// images.push(non_target_images[index]);
 				images.push(non_target_images[k]);
