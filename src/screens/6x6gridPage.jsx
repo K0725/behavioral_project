@@ -13,19 +13,19 @@ const SixgridPage = () => {
 	const [imagesState, setImages] = useState([]);
 	const [trialNumber, setTrialNumber] = useState(4);
 	const [targetIndex, setTargetIndex] = useState(3);
-	const [nonTargetStart, setNonTargetStart] = useState(23);
+	const [nonTargetStart, setNonTargetStart] = useState(24);
 
 	const [selectedImagesArray, setSelectedImagesArray] = useState([]);
 	const [attempts, setAttempts] = useState(1);
 	let start = new Date().getTime();
 
 	useEffect(() => {
-		let arr = [];
+		// let arr = [];
 		const subscribe = async () => {
 			let images = [];
 			// let indexFromTarget = Math.floor(Math.random() * 17);
 			let targetPhoto = target_images[targetIndex];
-			for (let k = nonTargetStart; k < 58; k++) {
+			for (let k = nonTargetStart; k < 58, k++;) {
 				// let index = Math.floor(Math.random() * 56);
 				// images.push(non_target_images[index]);
 				images.push(non_target_images[k]);
