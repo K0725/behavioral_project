@@ -16,7 +16,7 @@ const SixgridPage = () => {
 	const [nonTargetStart, setNonTargetStart] = useState(23);
 
 	const [selectedImagesArray, setSelectedImagesArray] = useState([]);
-	const [attempts, setAttempts] = useState(1);
+	const [attempts, setAttempts] = useState(0);
 	let start = new Date().getTime();
 
 	useEffect(() => {
@@ -51,6 +51,8 @@ const SixgridPage = () => {
 			let endIndex = startIndex + 35; //93
 			setNonTargetStart(startIndex);
 
+			setAttempts(0);
+
 			setSelectedImagesArray([]);
 
 			const end = new Date().getTime();
@@ -68,14 +70,8 @@ const SixgridPage = () => {
 			const shuffeledImages = await shuffleArray(nextRoundImages);
 			setImages(shuffeledImages);
 
-			// const subscibe = async (array) => {
-			// 	let newArray = array;
-			// 	let indexForTarget = Math.floor(Math.random() * 10);
-			// 	newArray[targetIndex] = target_images[indexForTarget];
-			// 	return newArray;
-			// };
 
-			setAttempts(attempts + 1);
+			
 			dispatch(
 				addData({
 					trial: trialNumber,
@@ -84,29 +80,9 @@ const SixgridPage = () => {
 				})
 			);
 			if (trialNumber === 13) {
-				// let newArray = [];
-				// subscibe(imagesState).then((data) => {
-				// 	shuffleArray(data).then((data) => {
-				// 		newArray.push(...data);
-				// 		setImages(newArray);
-				// 	});
-				// });
 
 				navigate(`/thanks`);
 			} else {
-				// let newArray = [];
-				// subscibe(imagesState).then((data) => {
-				// 	shuffleArray(data).then((data) => {
-				// 		data.map((d, k) => {
-				// 			if (d?.category === 'target') {
-				// 				setTargetIndex(k);
-				// 			}
-				// 		});
-				// 		newArray.push(...data);
-				// 		setImages(newArray);
-				// 	});
-				// });
-				// setAttempts(1);
 				setTrialNumber(trialNumber + 1);
 			}
 		}
