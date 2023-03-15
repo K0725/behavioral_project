@@ -67,13 +67,6 @@ const ThreegridPage = () => {
 			setTargetIndex(targetIndex + 1);
 			const shuffeledImages = await shuffleArray(nextRoundImages);
 			setImages(shuffeledImages);
-			// const subscribe = async (array) => {
-			// 	console.log('Array before', array);
-			// 	let newArray = array.slice(); // make a copy of the array
-			// 	let indexForTarget = Math.floor(Math.random() * 10);
-			// 	newArray[targetIndex] = target_images[indexForTarget];
-			// 	return newArray;
-			// };
 			setAttempts(attempts + 1);
 			dispatch(
 				addData({
@@ -83,25 +76,10 @@ const ThreegridPage = () => {
 				})
 			);
 			if (trialNumber === 3) {
-				// subscribe(imagesState).then((newArray) => {
-				// 	shuffleArray(newArray).then((shuffledArray) => {
-				// 		console.log('Array after', shuffledArray);
-				// 		setImages(shuffledArray);
-				// 	});
-				// });
 				navigate(`/nextPage`);
-			} else {
-				// subscribe(imagesState).then((newArray) => {
-				// 	shuffleArray(newArray).then((shuffledArray) => {
-				// 		shuffledArray.map((d, k) => {
-				// 			if (d?.category === 'target') {
-				// 				setTargetIndex(k);
-				// 			}
-				// 		});
-				// 		setImages(shuffledArray);
-				// 	});
-				// });
-				setAttempts(1);
+			} else {				
+				setAttempts(0);
+				console.log("Attemps: ", attempts)
 				setTrialNumber(trialNumber + 1);
 			}
 		}
