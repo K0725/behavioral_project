@@ -78,8 +78,7 @@ const ThreegridPage = () => {
 			if (trialNumber === 3) {
 				navigate(`/nextPage`);
 			} else {				
-				setAttempts(0);
-				console.log("Attemps: ", attempts)
+				setAttempts(1);
 				setTrialNumber(trialNumber + 1);
 			}
 		}

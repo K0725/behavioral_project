@@ -51,7 +51,7 @@ const SixgridPage = () => {
 			let endIndex = startIndex + 35; //93
 			setNonTargetStart(startIndex);
 
-			setAttempts(0);
+			setAttempts(1);
 
 			setSelectedImagesArray([]);
 
