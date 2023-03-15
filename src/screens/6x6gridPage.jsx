@@ -20,31 +20,24 @@ const SixgridPage = () => {
 	let start = new Date().getTime();
 
 	useEffect(() => {
-		// let arr = [];
 		const subscribe = async () => {
-			let images = [];
-			// let indexFromTarget = Math.floor(Math.random() * 17);
-			let targetPhoto = target_images[targetIndex];
-			for (let k = nonTargetStart; k < 58; k++) {
-				// let index = Math.floor(Math.random() * 56);
-				// images.push(non_target_images[index]);
-				images.push(non_target_images[k]);
-			}
-			// let targetIndex = Math.floor(Math.random() * 35);
-			// setTargetIndex(3);
-			// images[targetIndex] = targetPhoto;
-			images.push(targetPhoto);
-
-			return images;
+		  let images = [];
+		//   let targetPhoto = target_images[targetIndex];
+		  for (let k = nonTargetStart; k < 58; k++) {
+			images.push(non_target_images[k]);
+		  }
+	  
+		  return images;
 		};
-
+	  
 		subscribe().then((images) => {
-			shuffleArray(images).then((shuffledImages) => {
-				console.log('shuffled images', shuffledImages);
-				setImages(shuffledImages); // final array
-			});
+		  let shuffledImages = shuffleArray(images);
+		  let randomIndex = Math.floor(Math.random() * 36);
+		  shuffledImages.splice(randomIndex, 0, target_images[targetIndex]);
+		  console.log('shuffled images', shuffledImages);
+		  setImages(shuffledImages); // final array
 		});
-	}, []);
+	  }, []);
 
 	async function handleClickImage(image) {
 		if (image?.category === 'non-target') {
@@ -90,7 +83,7 @@ const SixgridPage = () => {
 					time: TimeTaken / 100,
 				})
 			);
-			if (trialNumber === 10) {
+			if (trialNumber === 14) {
 				// let newArray = [];
 				// subscibe(imagesState).then((data) => {
 				// 	shuffleArray(data).then((data) => {
@@ -119,15 +112,13 @@ const SixgridPage = () => {
 		}
 	}
 
-	async function shuffleArray(array) {
+	function shuffleArray(array) {
 		for (let i = array.length - 1; i > 0; i--) {
-			const j = Math.floor(Math.random() * i);
-			const temp = array[i];
-			array[i] = array[j];
-			array[j] = temp;
+		  const j = Math.floor(Math.random() * (i + 1));
+		  [array[i], array[j]] = [array[j], array[i]];
 		}
 		return array;
-	}
+	  }
 	return (
 		<div className='container'>
 			<div className='headerText'>6x6 Grid</div>
