@@ -132,8 +132,7 @@ const ThreegridPage = () => {
 						image?.category === 'non-target'
 						  ? 0
 						  : 1,
-					  display:
-						loadedImagesCount < imagesState.length ? 'none' : 'inline',
+					  display: loadedImagesCount < imagesState.length ? 'none' : 'inline',
 					}}
 					onLoad={() => {
 					  setLoadedImagesCount((prevCount) => prevCount + 1);
