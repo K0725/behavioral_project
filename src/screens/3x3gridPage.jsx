@@ -14,6 +14,9 @@ const ThreegridPage = () => {
 	const [targetIndex, setTargetIndex] = useState();
 	const [selectedImagesArray, setSelectedImagesArray] = useState([]);
 	const [attempts, setAttempts] = useState(1);
+	// const [loading, setLoading] = useState(true);
+	const [loadedImagesCount, setLoadedImagesCount] = useState(0);
+
 	let start = new Date().getTime();
 
 	useEffect(() => {
@@ -31,10 +34,12 @@ const ThreegridPage = () => {
 			return images;
 		};
 
-		subscribe().then((images) => {
+		subscribe().then((images) => {  //execute only one time
 			shuffleArray(images).then((shuffledImages) => {
-				console.log('shuffled images', shuffledImages);
+				// console.log('shuffled images', shuffledImages);
+				// console.log("updated");
 				setImages(shuffledImages); // final array
+				
 			});
 		});
 	}, []);
@@ -51,11 +56,12 @@ const ThreegridPage = () => {
 			let endIndex = startIndex + 8;
 
 			setSelectedImagesArray([]);
+			
 
 			const end = new Date().getTime();
 			const TimeTaken = end - start;
 			start = 0;
-
+			
 			// get next round images
 
 			let nextRoundImages = getNextRoundImages(
@@ -64,10 +70,15 @@ const ThreegridPage = () => {
 				non_target_images
 			);
 			nextRoundImages.push(target_images[targetIndex + 1]);
+			
 			setTargetIndex(targetIndex + 1);
 			const shuffeledImages = await shuffleArray(nextRoundImages);
+			
 			setImages(shuffeledImages);
 			setAttempts(attempts + 1);
+
+			
+
 			dispatch(
 				addData({
 					trial: trialNumber,
@@ -96,36 +107,44 @@ const ThreegridPage = () => {
 	}
 
 	return (
-		<div className='container'>
-			<div className='headerText'>Practice Trial 3x3 Grid</div>
-			<div className='image-grid'>
-				{imagesState.length &&
-					imagesState.map((image, key) => {
-						return (
-							<div
-								className='grid-item'
-								key={key}
-								onClick={() => handleClickImage(image)}
-							>
-								<img
-									src={image?.image}
-									width='120px'
-									height='120px'
-									alt={image?.index}
-									style={{
-										opacity:
-											selectedImagesArray.includes(image?.index) &&
-											image?.category === 'non-target'
-												? 0
-												: 1,
-									}}
-								/>
-							</div>
-						);
-					})}
-			</div>
+		<div className="container">
+		  <div className="headerText">Practice Trial 3x3 Grid</div>
+	
+		  {loadedImagesCount < imagesState.length && (
+			<div className="loading-message">Loading images, please wait...</div>
+		  )}
+		  <div className="image-grid">
+			{imagesState.map((image, key) => {
+			  return (
+				<div
+				  className="grid-item"
+				  key={key}
+				  onClick={() => handleClickImage(image)}
+				>
+				  <img
+					src={image?.image}
+					width="120px"
+					height="120px"
+					alt={image?.index}
+					style={{
+					  opacity:
+						selectedImagesArray.includes(image?.index) &&
+						image?.category === 'non-target'
+						  ? 0
+						  : 1,
+					  display:
+						loadedImagesCount < imagesState.length ? 'none' : 'inline',
+					}}
+					onLoad={() => {
+					  setLoadedImagesCount((prevCount) => prevCount + 1);
+					}}
+				  />
+				</div>
+			  );
+			})}
+		  </div>
 		</div>
-	);
-};
-
-export default ThreegridPage;
+	  );
+	};
+	
+	export default ThreegridPage;
