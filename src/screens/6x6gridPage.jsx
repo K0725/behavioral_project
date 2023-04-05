@@ -45,11 +45,13 @@ const SixgridPage = () => {
 
 
   const handleImageLoad = () => {
-    setLoadedImagesCount((prevCount) => prevCount + 1);
-  
-    if (loadedImagesCount + 1 === imagesState.length) {
-      startRef.current = new Date().getTime();
-    }
+    setLoadedImagesCount((prevCount) => {
+      const newCount = prevCount + 1;
+      if (newCount === imagesState.length) {
+        startRef.current = new Date().getTime();
+      }
+      return newCount;
+    });
   };
 
 	async function handleClickImage(image) {
@@ -70,6 +72,7 @@ const SixgridPage = () => {
 
       const end = new Date().getTime();
       const TimeTaken = end - startRef.current; // Update this line to use startRef instead of start
+
       startRef.current = 0;
 
       setLoadedImagesCount(0);
@@ -80,9 +83,7 @@ const SixgridPage = () => {
   
       setSelectedImagesArray([]);
   
-       // Update the start time for the next round
-  
-      // get next round images
+       
       let nextRoundImages = getNextRoundImages(
         startIndex,
         endIndex,
@@ -121,7 +122,7 @@ const SixgridPage = () => {
       <div className="headerText"></div>
 
       {loadedImagesCount < imagesState.length && (
-        <div className="loading-message">Loading images, please wait...</div>
+        <h3><strong>Loading images, please wait...</strong></h3>
       )}
       <div className="image-grid-six">
         {imagesState.map((image, key) => {
